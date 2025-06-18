@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morpion Moderne</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="game-container">
+      <header class="game-header">
+        <h1>Morpion</h1>
+        <div class="game-status" id="gameStatus">Tour de Joueur 1 (X)</div>
+      </header>
+
+      <div class="game-board" id="gameBoard">
+        <!-- Les cases seront générées dynamiquement en JS -->
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+
+      <div class="game-controls">
+        <button class="btn" id="restartBtn">Recommencer</button>
+        <div class="player-settings">
+          <div class="player-input">
+            <label for="player1">Joueur 1 (X):</label>
+            <input type="text" id="player1" value="Joueur 1" />
+          </div>
+          <div class="player-input">
+            <label for="player2">Joueur 2 (O):</label>
+            <input type="text" id="player2" value="Joueur 2" />
+          </div>
+          <button class="btn" id="updatePlayersBtn">Mettre à jour</button>
+        </div>
+      </div>
+
+      <div class="scoreboard">
+        <div class="score" id="player1Score">
+          <span class="player-name">Joueur 1 (X)</span>
+          <span class="score-value">0</span>
+        </div>
+        <div class="score" id="player2Score">
+          <span class="player-name">Joueur 2 (O)</span>
+          <span class="score-value">0</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

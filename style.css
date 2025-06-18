@@ -1,0 +1,288 @@
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4895ef;
+  --dark-color: #2b2d42;
+  --light-color: #f8f9fa;
+  --success-color: #4cc9f0;
+  --danger-color: #f72585;
+  --border-radius: 10px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f7fa;
+  color: var(--dark-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Changé de center à flex-start */
+  padding: 20px;
+  overflow-x: hidden; /* Empêche le débordement horizontal */
+}
+
+.game-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: min(500px, 90vw); /* S'adapte aux petits écrans */
+  padding: 25px;
+  transition: var(--transition);
+  margin: 20px 0; /* Espacement vertical */
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 20px;
+  overflow: hidden; /* Empêche le débordement */
+}
+
+.game-header h1 {
+  color: var(--primary-color);
+  font-size: clamp(1.8rem, 5vw, 2.2rem); /* Taille responsive */
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.game-status {
+  background-color: var(--light-color);
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  margin-bottom: 25px;
+  width: 100%;
+  aspect-ratio: 1; /* Carré parfait */
+}
+
+.cell {
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(2rem, 10vw, 3rem); /* Taille responsive */
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--box-shadow);
+  min-height: 0; /* Important pour grid */
+  overflow: hidden; /* Empêche le débordement */
+}
+
+/* Supprimer la transformation au hover sur mobile */
+@media (hover: hover) {
+  .cell:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.cell.x {
+  color: var(--primary-color);
+}
+
+.cell.o {
+  color: var(--danger-color);
+}
+
+.game-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.player-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.player-input label {
+  font-size: 0.9rem;
+  color: var(--dark-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-input input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--light-color);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  width: 100%;
+  gap: 10px;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 0; /* Permet le text-overflow */
+  flex: 1;
+}
+
+.player-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center;
+}
+
+.score-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* Animation pour les victoires */
+@keyframes celebrate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.winning-cell {
+  animation: celebrate 0.5s ease 3;
+}
+/* Ajoutez ces styles à votre CSS */
+.winner-display {
+  background-color: #4caf50;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+.draw-display {
+  background-color: #ff9800;
+  color: white;
+}
+
+.winner-message {
+  font-size: 1.2em;
+  font-weight: bold;
+  display: block;
+}
+
+.restart-prompt {
+  font-size: 0.8em;
+  display: block;
+  opacity: 0.9;
+}
+
+.winning-cell {
+  position: relative;
+  z-index: 1;
+}
+
+.winning-cell::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(76, 175, 80, 0.3);
+  z-index: -1;
+  border-radius: var(--border-radius);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive amélioré */
+@media (max-width: 500px) {
+  body {
+    padding: 10px;
+    align-items: center;
+  }
+
+  .game-container {
+    padding: 15px;
+    margin: 10px 0;
+  }
+
+  .game-controls {
+    gap: 10px;
+  }
+
+  .player-input {
+    gap: 3px;
+  }
+}
